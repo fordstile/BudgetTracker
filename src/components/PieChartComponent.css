@@ -1,0 +1,94 @@
+/* src/components/PieChartComponent.css */
+
+/* Card Container */
+.pie-chart-card {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Header Styling */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  .manage-link {
+    font-size: 12px;
+    color: #2A2A72;
+    text-decoration: none;
+  }
+  
+  .subtitle {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  /* Centered Income Text in Doughnut Chart */
+  .chart-container {
+    position: relative;
+    width: 200px;
+    margin: auto;
+  }
+  
+  .chart-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .income-label {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .income-amount {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Legend Styling */
+  .legend {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .legend div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 5px 0;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .savings { background: #6A5ACD; }
+  .expenses { background: #000080; }
+  .left { background: #CBC3E3; }
+  
+  .amount {
+    font-weight: bold;
+  }
+  

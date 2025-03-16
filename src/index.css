@@ -1,0 +1,148 @@
+/* src/index.css */
+
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+
+  }
+  
+  /* Layout: Sidebar + Main Content */
+  .dashboard-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: #f4f5f7;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #1E1E50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  } 
+
+  
+ /* Sidebar Header */
+ .sidebar-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    /* text-align: center; */
+  }
+ .side{
+    margin-top: 15px;
+}
+
+  /* Navigation Sections */
+  .nav-section {
+    margin-bottom: 20px;
+  }
+  
+  /* Section Titles */
+  .nav-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #aaa;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  
+  /* Navigation List */
+  .nav-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-section li {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .nav-section li:hover,
+  .nav-section .active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Icons */
+  .icon {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+   
+  
+  /* Main Content */
+  .dashboard-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  /* Cards */
+  .card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-bottom: 20px;
+    height: 430px;
+  }
+  .card h3{
+    margin-bottom: 70px;
+  }
+  
+  /* Flexbox Layout for Charts */
+  .charts {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .charts .card {
+    width: 48%;
+  }
+  
+  /* Transactions Table */
+  .transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .transactions-table th, .transactions-table td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .transactions-table th {
+    background: #ddd;
+  }
+  
+  .transactions-table tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .charts {
+      flex-direction: column;
+    }
+  
+    .charts .card {
+      width: 100%;
+    }
+  }
+  

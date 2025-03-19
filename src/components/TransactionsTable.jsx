@@ -1,16 +1,33 @@
-// src/components/TransactionsTable.jsx
-import React from "react";
+import React, { useState } from "react";
+import AddTransactionModal from "./AddTransactionModal";
+import { FaEllipsisV } from "react-icons/fa";
+import "./TransactionsTable.css";
 
 const TransactionsTable = () => {
-  const transactions = [
-    { account: "US Bank (0092)", transaction: "Walmart", category: "Groceries", date: "05/20/2023", amount: "-$78.20" },
-    { account: "Wallet", transaction: "Fiverr International", category: "Other income", date: "05/19/2023", amount: "+$500" },
-    { account: "Revolut (49221)", transaction: "Chevron", category: "Gas", date: "05/19/2023", amount: "-$100" },
-  ];
+  const [transactions, setTransactions] = useState([
+   
+  ]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const addTransaction = (newTransaction) => {
+    setTransactions([...transactions, newTransaction]);
+  };
 
   return (
-    <div className="card">
-      <h3>Recent Transactions</h3>
+    <div className="transactions-card">
+      {/* Header Section */}
+      <div className="transactions-header">
+        <h3>Recent Transactions</h3>
+        <div className="actions">
+          <span className="add-transaction" onClick={() => setIsModalOpen(true)}>
+            + Add new transaction
+          </span>
+          <span className="see-more">See more</span>
+        </div>
+      </div>
+
+      {/* Transactions Table */}
       <table className="transactions-table">
         <thead>
           <tr>
@@ -19,6 +36,7 @@ const TransactionsTable = () => {
             <th>Category</th>
             <th>Date</th>
             <th>Amount</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -28,11 +46,17 @@ const TransactionsTable = () => {
               <td>{tx.transaction}</td>
               <td>{tx.category}</td>
               <td>{tx.date}</td>
-              <td>{tx.amount}</td>
+              <td className={tx.amount >= 0 ? "positive" : "negative"}>{tx.amount}</td>
+              <td>
+                <FaEllipsisV className="action-icon" />
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Add Transaction Modal */}
+      <AddTransactionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onAddTransaction={addTransaction} />
     </div>
   );
 };

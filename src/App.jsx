@@ -9,6 +9,7 @@ const App = () => {
     <div className="dashboard-container">
       {/* <Sidebar /> */}
       <Dashboard />
+    
     </div>
   );
 };

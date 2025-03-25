@@ -25,25 +25,32 @@
     color: white;
     padding: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: space-between;
+    /* gap: 100px; */
+    /* align-items: center; */
+    
   } 
-
+  .below-avatar{
+    margin-top: 0;
+  }
+  .side{
+    margin-top: 1rem;
+}
   
  /* Sidebar Header */
  .sidebar-header {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-top: 13px;
     /* text-align: center; */
   }
- .side{
-    margin-top: 15px;
-}
+  
+ 
 
   /* Navigation Sections */
   .nav-section {
-    margin-bottom: 20px;
+    margin-top: 10px;
   }
   
   /* Section Titles */
@@ -133,6 +140,9 @@
   
   .transactions-table tr:nth-child(even) {
     background: #f9f9f9;
+  }
+  .delete{
+    background-color: red;
   }
   
   /* Responsive */

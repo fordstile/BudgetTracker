@@ -1,14 +1,20 @@
 // src/components/Sidebar.jsx
 import React from "react";
+import Avatar from "./Avatar";
+import userImage from "../assets/DV.jpg"; // Adjust the path if needed
+
 import { FaHome, FaWallet, FaChartPie, FaExchangeAlt, FaCalculator, FaCog } from "react-icons/fa";
-import "./Sidebar.css";
+// import "./Sidebar.css";
 
 const Sidebar = () => {
     return (
         <aside className="sidebar">
-            <div className="side">      <div className="sidebar-header">
-                <span className="logo">💡 MyFin</span>
-            </div>
+             <Avatar name="Ibrahim" image={userImage} />
+        <div className="below-avatar">
+            <div className="side" >      
+                <div className="sidebar-header">
+                    <span className="logo">💡 MyFin</span>
+                </div>
 
                 <nav className="sidebar-nav">
                     <div className="nav-section">
@@ -52,9 +58,11 @@ const Sidebar = () => {
                             </li>
                         </ul>
                     </div>
-                </nav></div>
-
+                </nav>
+                </div>
+         </div>   
         </aside>
+        
     );
 };
 

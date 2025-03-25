@@ -1,74 +1,41 @@
-/* Card Container */
 .transactions-card {
+  width: 100%;
   background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
 .transactions-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-}
-
-.transactions-header h3 {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.actions {
-  display: flex;
-  gap: 15px;
+  margin-bottom: 10px;
 }
 
 .add-transaction {
   color: blue;
   cursor: pointer;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .see-more {
+  
   color: purple;
   cursor: pointer;
 }
 
-/* Table Styling */
 .transactions-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.transactions-table th {
+.transactions-table th, .transactions-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
   text-align: left;
-  padding: 12px;
-  font-size: 14px;
-  color: #666;
-  font-weight: normal;
-  border-bottom: 2px solid #ddd;
 }
 
-.transactions-table td {
-  padding: 12px;
-  font-size: 14px;
-  color: #333;
-  border-bottom: 1px solid #eee;
-}
-
-/* Account Styling */
-.account-name {
-  font-weight: bold;
-}
-
-.account-type {
-  font-size: 12px;
-  color: gray;
-}
-
-/* Positive & Negative Amounts */
 .positive {
   color: green;
   font-weight: bold;
@@ -79,8 +46,33 @@
   font-weight: bold;
 }
 
-/* Action Icon */
-.action-icon {
+.action-cell {
+  position: relative;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
   cursor: pointer;
-  color: #aaa;
+  font-size: 16px;
+  padding: 5px;
+  color: blue;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 5px;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: red;
 }

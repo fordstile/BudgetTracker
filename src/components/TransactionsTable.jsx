@@ -4,14 +4,24 @@ import { FaEllipsisV } from "react-icons/fa";
 import "./TransactionsTable.css";
 
 const TransactionsTable = () => {
-  const [transactions, setTransactions] = useState([
-   
-  ]);
-
+  const [transactions, setTransactions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openMenuIndex, setOpenMenuIndex] = useState(null);
 
+  // Add a new transaction
   const addTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
+  };
+
+  // Toggle dropdown menu
+  const toggleMenu = (index) => {
+    setOpenMenuIndex(openMenuIndex === index ? null : index);
+  };
+
+  // Delete the selected transaction
+  const handleDelete = (indexToDelete) => {
+    setTransactions(transactions.filter((_, index) => index !== indexToDelete));
+    setOpenMenuIndex(null);
   };
 
   return (
@@ -21,9 +31,9 @@ const TransactionsTable = () => {
         <h3>Recent Transactions</h3>
         <div className="actions">
           <span className="add-transaction" onClick={() => setIsModalOpen(true)}>
-            + Add new transaction
-          </span>
-          <span className="see-more">See more</span>
+            Add new transaction
+          </span> 
+          <span className="see-more">    See more</span>
         </div>
       </div>
 
@@ -47,8 +57,15 @@ const TransactionsTable = () => {
               <td>{tx.category}</td>
               <td>{tx.date}</td>
               <td className={tx.amount >= 0 ? "positive" : "negative"}>{tx.amount}</td>
-              <td>
-                <FaEllipsisV className="action-icon" />
+              <td className="action-cell">
+                <button className="menu-btn" onClick={() => toggleMenu(index)}>
+                  <FaEllipsisV className="action-icon" />
+                </button>
+                {openMenuIndex === index && (
+                  <div className="dropdown-menu">
+                    <button onClick={() => handleDelete(index)}>Delete</button>
+                  </div>
+                )}
               </td>
             </tr>
           ))}
@@ -56,7 +73,11 @@ const TransactionsTable = () => {
       </table>
 
       {/* Add Transaction Modal */}
-      <AddTransactionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onAddTransaction={addTransaction} />
+      <AddTransactionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddTransaction={addTransaction}
+      />
     </div>
   );
 };

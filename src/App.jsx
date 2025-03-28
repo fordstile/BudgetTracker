@@ -1,5 +1,6 @@
 // src/App.jsx
 import React from "react";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import LandingPage from "./pages/LandingPage";

@@ -1420,6 +1420,9 @@
   flex-wrap: wrap;
   height: auto;
 }
+.footer-bottom p{
+  color: grey;
+}
 
 .footer-legal {
   display: flex;

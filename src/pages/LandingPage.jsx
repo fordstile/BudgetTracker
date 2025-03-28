@@ -1,4 +1,6 @@
 import React from "react";
+// import Chatbot from "./components/chatbot";
+import Chatbot from "../components/chatbot";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
@@ -256,9 +258,9 @@ const handleSubmit = (e) => {
           <Link to="/signup">
             <button className="btn-primary">Get started</button>
           </Link>
-          
+          <Link to="/chatbot">
             <button className="btn-secondary">Talk to AI</button>
-          
+          </Link>
           </div>
         </div>
         <div className="animated-phone">

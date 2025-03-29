@@ -1,67 +1,108 @@
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #181818, #232323);
-  }
-  
-  .login-box {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 27%;
-    height: 60%;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background: #ff6600;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  p {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #cce0ff, #b19cd9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-  .p1{
-    margin-top: 35px;
-    margin-bottom: 0px;
-    font-weight: bold;
-    text-transform: capitalize;
-  
-  }
+/* Logo */
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  width: 120px;
+  cursor: pointer;
+}
 
-  .p2{
-    margin-top: 10px;
-  }
+/* Login Box */
+.login-box {
+  background: #1f2937;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 350px;
+}
 
-   .google-login{
-          background-color: transparent;
-          color: white;
-          padding: 10px 20px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          margin-top: 10px;
-          width: 100%;
-   } 
+/* Titles */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
 
- 
-  
-  
+.subtitle {
+  color: #c4c4c4;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Input Groups */
+.input-group {
+  display: flex;
+  align-items: center;
+  background: #333a5c;
+  padding: 10px;
+  border-radius: 30px;
+  margin-bottom: 15px;
+}
+
+.input-group .icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.input-group input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Forgot Password */
+.forgot-password {
+  color: #6366f1;
+  cursor: pointer;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+/* Button */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  background: linear-gradient(to right, #6366f1, #4f46e5);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: linear-gradient(to right, #4f46e5, #4338ca);
+}
+
+/* Switch Authentication */
+.switch-auth {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #c4c4c4;
+}
+
+.switch-link {
+  color: #4f46e5;
+  cursor: pointer;
+  text-decoration: underline;
+}

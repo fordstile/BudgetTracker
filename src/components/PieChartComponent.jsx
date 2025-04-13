@@ -2,7 +2,6 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import "./PieChartComponent.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -11,41 +10,140 @@ const PieChartComponent = () => {
     labels: ["Savings", "Expenses", "Left to budget"],
     datasets: [
       {
-        data: [1000, 3952, 548], // Amounts from the image
-        backgroundColor: ["#6A5ACD", "#000080", "#CBC3E3"], // Colors from image
-        hoverBackgroundColor: ["#5A4ACD", "#000070", "#BBA3E3"],
+        data: [1000, 3952, 548],
+        backgroundColor: ["#2563eb", "#3b82f6", "#93c5fd"],
+        hoverBackgroundColor: ["#1d4ed8", "#2563eb", "#60a5fa"],
         borderWidth: 0,
+        spacing: 3,
+        borderRadius: 2,
       },
     ],
   };
 
   const options = {
-    cutout: "70%", // Creates the donut effect
+    cutout: "80%",
     plugins: {
       legend: {
-        display: false, // Hides default legend
+        display: false,
+      },
+      tooltip: {
+        enabled: false,
       },
     },
+    maintainAspectRatio: false,
+    rotation: -90,
   };
 
   return (
-    <div className="card pie-chart-card">
-      <div className="header">
-        <p className="title">MONTHLY BUDGET</p>
-        <a href="/" className="manage-link">Manage budget</a>
-      </div>
-      <p className="subtitle">Jun 01 - Jun 30, 2023</p>
-      <div className="chart-container">
-        <Doughnut data={data} options={options} />
-        <div className="chart-center">
-          <p className="income-label">Income</p>
-          <p className="income-amount">$5,500</p>
+    <div className="chart-container">
+      <div className="chart-header">
+        <h2>Monthly Budget</h2>
+        <div className="chart-period">
+          <button className="period-btn">Manage Budget</button>
         </div>
       </div>
-      <div className="legend">
-        <div><span className="dot savings"></span> Savings <span className="amount">$1,000</span></div>
-        <div><span className="dot expenses"></span> Expenses <span className="amount">$3,952</span></div>
-        <div><span className="dot left"></span> Left to budget <span className="amount">$548</span></div>
+      <p style={{ 
+        margin: '4px 0 12px',
+        fontSize: '14px',
+        color: '#64748b'
+      }}>Jun 01 - Jun 30, 2023</p>
+      <div style={{ 
+        position: 'relative',
+        height: '300px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        paddingTop: '10px'
+      }}>
+        <div style={{
+          width: '100%',
+          maxWidth: '220px',
+          aspectRatio: '1',
+          position: 'relative'
+        }}>
+          <Doughnut data={data} options={options} />
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            textAlign: 'center',
+            background: 'white',
+            borderRadius: '50%',
+            padding: '20px'
+          }}>
+            <p style={{ 
+              margin: '0',
+              fontSize: '12px',
+              color: '#64748b'
+            }}>Income</p>
+            <p style={{
+              margin: '0',
+              fontSize: '24px',
+              fontWeight: '600',
+              color: '#1e293b'
+            }}>$5,500</p>
+          </div>
+        </div>
+      </div>
+      <div style={{ 
+        borderTop: '1px solid #e2e8f0', 
+        paddingTop: '16px',
+        marginTop: '20px'
+      }}>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between',
+          marginBottom: '12px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ 
+              width: '8px', 
+              height: '8px', 
+              borderRadius: '50%', 
+              background: '#2563eb',
+              display: 'inline-block'
+            }}></span>
+            <span style={{ fontSize: '14px', color: '#1e293b' }}>Savings</span>
+          </div>
+          <span style={{ fontSize: '14px', fontWeight: '500', color: '#1e293b' }}>$1,000</span>
+        </div>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between',
+          marginBottom: '12px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ 
+              width: '8px', 
+              height: '8px', 
+              borderRadius: '50%', 
+              background: '#3b82f6',
+              display: 'inline-block'
+            }}></span>
+            <span style={{ fontSize: '14px', color: '#1e293b' }}>Expenses</span>
+          </div>
+          <span style={{ fontSize: '14px', fontWeight: '500', color: '#1e293b' }}>$3,952</span>
+        </div>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ 
+              width: '8px', 
+              height: '8px', 
+              borderRadius: '50%', 
+              background: '#93c5fd',
+              display: 'inline-block'
+            }}></span>
+            <span style={{ fontSize: '14px', color: '#1e293b' }}>Left to budget</span>
+          </div>
+          <span style={{ fontSize: '14px', fontWeight: '500', color: '#1e293b' }}>$548</span>
+        </div>
       </div>
     </div>
   );

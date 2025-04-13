@@ -1,11 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
-import * as axios from "axios";
-
-// import axios from "axios";
+// Use local axios module instead of npm package
+import axios from "../../axios.js";
 import { toast } from "react-toastify";
 
 // Create Context
-export const AppContent = createContext();
+export const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,7 +21,7 @@ const AppProvider = ({ children }) => {
         setIsLoggedIn(true);
       }
     } catch (error) {
-      toast.error(error.message);
+      console.error("Error fetching user data:", error);
       setIsLoggedIn(false);
       setUser(null);
     }
@@ -33,11 +32,11 @@ const AppProvider = ({ children }) => {
   }, []);
 
   return (
-    <AppContent.Provider
+    <AppContext.Provider
       value={{ backendUrl, isLoggedIn, setIsLoggedIn, user, getUserData }}
     >
       {children}
-    </AppContent.Provider>
+    </AppContext.Provider>
   );
 };
 

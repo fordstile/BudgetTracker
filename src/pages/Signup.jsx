@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppContent } from "../components/context/AppContext";
+import { AppContext } from "../components/context/AppContext";
 // import axios from "axios";
-import * as axios from "axios";
+import axios from "../axios.js";
 
 import { toast } from "react-toastify";
 import "./Signup.css"; // Importing the CSS file
@@ -10,7 +10,7 @@ import { assets } from "../assets/assets";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { backendUrl, setIsLoggedIn, getUserData } = useContext(AppContent);
+  const { backendUrl, setIsLoggedIn, getUserData } = useContext(AppContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

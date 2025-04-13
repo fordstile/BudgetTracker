@@ -1,43 +1,23 @@
-import React, { useState } from "react";
-import AddTransactionModal from "./AddTransactionModal";
-import { FaEllipsisV } from "react-icons/fa";
+import React from "react";
+import { useTransactions } from '../context/TransactionsContext';
+import { Link } from "react-router-dom";
 import "./TransactionsTable.css";
 
 const TransactionsTable = () => {
-  const [transactions, setTransactions] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [openMenuIndex, setOpenMenuIndex] = useState(null);
-
-  // Add a new transaction
-  const addTransaction = (newTransaction) => {
-    setTransactions([...transactions, newTransaction]);
-  };
-
-  // Toggle dropdown menu
-  const toggleMenu = (index) => {
-    setOpenMenuIndex(openMenuIndex === index ? null : index);
-  };
-
-  // Delete the selected transaction
-  const handleDelete = (indexToDelete) => {
-    setTransactions(transactions.filter((_, index) => index !== indexToDelete));
-    setOpenMenuIndex(null);
-  };
+  const { transactions } = useTransactions();
+  const recentTransactions = transactions.slice(0, 5); // Get only the 5 most recent transactions
 
   return (
     <div className="transactions-card">
-      {/* Header Section */}
       <div className="transactions-header">
         <h3>Recent Transactions</h3>
         <div className="actions">
-          <span className="add-transaction" onClick={() => setIsModalOpen(true)}>
-            Add new transaction
-          </span> 
-          <span className="see-more">    See more</span>
+          <Link to="/dashboard/transactions" className="see-more">
+            See more
+          </Link>
         </div>
       </div>
 
-      {/* Transactions Table */}
       <table className="transactions-table">
         <thead>
           <tr>
@@ -46,38 +26,29 @@ const TransactionsTable = () => {
             <th>Category</th>
             <th>Date</th>
             <th>Amount</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
-          {transactions.map((tx, index) => (
-            <tr key={index}>
+          {recentTransactions.map(tx => (
+            <tr key={tx.id}>
               <td>{tx.account}</td>
-              <td>{tx.transaction}</td>
+              <td>{tx.transactionName}</td>
               <td>{tx.category}</td>
-              <td>{tx.date}</td>
-              <td className={tx.amount >= 0 ? "positive" : "negative"}>{tx.amount}</td>
-              <td className="action-cell">
-                <button className="menu-btn" onClick={() => toggleMenu(index)}>
-                  <FaEllipsisV className="action-icon" />
-                </button>
-                {openMenuIndex === index && (
-                  <div className="dropdown-menu">
-                    <button onClick={() => handleDelete(index)}>Delete</button>
-                  </div>
-                )}
+              <td>{new Date(tx.date).toLocaleDateString()}</td>
+              <td className={Number(tx.amount) >= 0 ? "positive" : "negative"}>
+                ${Math.abs(tx.amount).toFixed(2)}
               </td>
             </tr>
           ))}
+          {recentTransactions.length === 0 && (
+            <tr>
+              <td colSpan="5" className="no-transactions">
+                No recent transactions. Add a transaction to see it here.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
-
-      {/* Add Transaction Modal */}
-      <AddTransactionModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onAddTransaction={addTransaction}
-      />
     </div>
   );
 };

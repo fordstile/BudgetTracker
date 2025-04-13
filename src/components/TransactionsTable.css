@@ -1,28 +1,40 @@
 .transactions-card {
-  width: 100%;
   background: white;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
 }
 
 .transactions-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 1.5rem;
 }
 
-.add-transaction {
-  color: blue;
-  cursor: pointer;
-  /* font-weight: bold; */
+.transactions-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .see-more {
-  
-  color: purple;
-  cursor: pointer;
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.see-more:hover {
+  text-decoration: underline;
 }
 
 .transactions-table {
@@ -30,20 +42,39 @@
   border-collapse: collapse;
 }
 
-.transactions-table th, .transactions-table td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+.transactions-table th,
+.transactions-table td {
+  padding: 1rem;
   text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.transactions-table th {
+  font-weight: 600;
+  color: #4b5563;
+  background-color: #f9fafb;
+  font-size: 0.9rem;
+}
+
+.transactions-table td {
+  color: #1a1a1a;
+  font-size: 0.9rem;
 }
 
 .positive {
-  color: green;
-  font-weight: bold;
+  color: #059669;
+  font-weight: 600;
 }
 
 .negative {
-  color: red;
-  font-weight: bold;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.no-transactions {
+  text-align: center;
+  color: #6b7280;
+  padding: 2rem !important;
 }
 
 .action-cell {

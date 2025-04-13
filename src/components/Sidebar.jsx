@@ -42,25 +42,25 @@ const Sidebar = ({ onCollapse }) => {
                             <p className="nav-title">MAIN</p>
                             <ul>
                                 <li>
-                                    <NavLink to="/dashboard" end>
+                                    <NavLink to="/dashboard" end data-tooltip="D">
                                         <RxDashboard className="icon" />
                                         {!isCollapsed && <span>Dashboard</span>}
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/accounts">
+                                    <NavLink to="/dashboard/accounts" data-tooltip="A">
                                         <BsWallet2 className="icon" />
                                         {!isCollapsed && <span>Accounts</span>}
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/budgets">
+                                    <NavLink to="/dashboard/budgets" data-tooltip="B">
                                         <BiMoneyWithdraw className="icon" />
                                         {!isCollapsed && <span>Budgets</span>}
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/transactions">
+                                    <NavLink to="/dashboard/transactions" data-tooltip="T">
                                         <TbReportMoney className="icon" />
                                         {!isCollapsed && <span>Transactions</span>}
                                     </NavLink>
@@ -72,13 +72,13 @@ const Sidebar = ({ onCollapse }) => {
                             <p className="nav-title">{!isCollapsed && "TOOLS"}</p>
                             <ul>
                                 <li>
-                                    <NavLink to="/dashboard/calculators">
+                                    <NavLink to="/dashboard/calculators" data-tooltip="C">
                                         <SlCalculator className="icon" />
                                         {!isCollapsed && <span>Calculators</span>}
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/settings">
+                                    <NavLink to="/dashboard/settings" data-tooltip="S">
                                         <IoSettingsOutline className="icon" />
                                         {!isCollapsed && <span>Settings</span>}
                                     </NavLink>

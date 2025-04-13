@@ -194,6 +194,7 @@
   padding-left: 0rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  position: relative;
 }
 
 .sidebar.collapsed .logo {
@@ -215,6 +216,28 @@
 
 .sidebar.collapsed .user-footer {
   padding: 0.5rem;
+}
+
+.sidebar.collapsed .sidebar-nav a::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%) translateY(-5px);
+  color: #94A3B8;
+  font-size: 0.55rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.sidebar.collapsed .sidebar-nav a:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 @media (max-width: 768px) {

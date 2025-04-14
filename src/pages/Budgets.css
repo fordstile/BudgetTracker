@@ -1,14 +1,25 @@
+/* 🌐 Global Layout */
+.page-container,
 .budget-container {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
+/* 🔠 Headers */
+.page-header,
 .budget-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin-bottom: 2rem;
+}
+
+.page-title {
+  font-size: 2rem;
 }
 
 .budget-header h2 {
@@ -17,31 +28,43 @@
   color: #1a1a1a;
 }
 
-.cancel-btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  background: none;
-  color: #666;
-  cursor: pointer;
-  font-size: 0.9rem;
+/* 🧭 Action Buttons */
+.page-actions,
+.cancel-btn,
+.next-btn {
+  margin-top: 1rem;
 }
 
+.action-btn,
+.cancel-btn,
 .next-btn {
-  padding: 0.5rem 1.5rem;
+  padding: 0.6rem 1.2rem;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
   border: none;
+}
+
+.cancel-btn {
+  background: none;
+  color: #666;
+}
+
+.next-btn,
+.action-btn.primary {
   background-color: #6366f1;
   color: white;
   border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
   font-weight: 500;
 }
 
+/* ⏩ Progress Steps */
 .progress-steps {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin: 2rem 0 3rem;
+  flex-wrap: wrap;
 }
 
 .step {
@@ -49,6 +72,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  margin-right: 1rem;
 }
 
 .step-indicator {
@@ -64,14 +88,13 @@
   color: #666;
 }
 
-.step.completed .step-indicator {
+.step.completed .step-indicator,
+.step.active .step-indicator {
   background-color: #6366f1;
   color: white;
 }
 
 .step.active .step-indicator {
-  background-color: #6366f1;
-  color: white;
   border: 2px solid #818cf8;
 }
 
@@ -91,10 +114,18 @@
   background-color: #6366f1;
 }
 
+/* 🧾 Content Layout */
+.page-content,
 .budget-content {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.budget-form {
+  flex: 2;
+  min-width: 300px;
 }
 
 .budget-form h3 {
@@ -103,7 +134,16 @@
   margin-bottom: 1.5rem;
 }
 
+.budget-summary {
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 💰 Expenses */
 .expenses-section {
+  margin-top: 1.5rem;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -120,12 +160,14 @@
 
 .expense-category {
   border-bottom: 1px solid #e5e7eb;
+  border-radius: 5px;
 }
 
 .category-header {
+  background: #f7f7f7;
+  padding: 1rem;
   display: flex;
   align-items: center;
-  padding: 1rem;
   cursor: pointer;
   user-select: none;
 }
@@ -158,6 +200,11 @@
   align-items: center;
   padding: 0.75rem;
   gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.expense-item svg {
+  margin-right: 0.5rem;
 }
 
 .item-icon {
@@ -170,10 +217,12 @@
   color: #1a1a1a;
 }
 
+/* 💵 Input */
 .amount-input {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  margin-left: auto;
 }
 
 .amount-input span {
@@ -196,13 +245,7 @@
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
 }
 
-.budget-summary {
-  padding: 1.5rem;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
+/* 🍩 Donut Chart */
 .donut-chart {
   position: relative;
   width: 200px;
@@ -236,6 +279,7 @@
   color: #1a1a1a;
 }
 
+/* 📊 Summary */
 .summary-items {
   display: flex;
   flex-direction: column;
@@ -267,4 +311,55 @@
 
 .summary-item.remaining span:first-child {
   color: #666;
-} 
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .page-content,
+  .budget-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page-actions {
+    margin-left: 0;
+  }
+
+  .summary-item span {
+    font-size: 0.9rem;
+  }
+
+  .expense-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .amount-input {
+    margin-top: 0.5rem;
+    margin-left: 0;
+  }
+
+  .amount-input input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .step-indicator {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .amount-input input {
+    font-size: 0.9rem;
+  }
+}

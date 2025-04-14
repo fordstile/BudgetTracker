@@ -90,17 +90,21 @@ const Transactions = () => {
           </div>
           
           {transactions.map(transaction => (
-            <div key={transaction.id} className="transaction-item">
-              <div>{new Date(transaction.date).toLocaleDateString()}</div>
-              <div>{transaction.transactionName}</div>
-              <div>{transaction.category}</div>
-              <div className={Number(transaction.amount) >= 0 ? 'amount positive' : 'amount negative'}>
-                ${Math.abs(transaction.amount).toFixed(2)}
-              </div>
-              <div>{transaction.account}</div>
-              <div>{transaction.note}</div>
-            </div>
-          ))}
+  <div key={transaction.id} className="transaction-item">
+    <div data-label="Date">{new Date(transaction.date).toLocaleDateString()}</div>
+    <div data-label="Transaction">{transaction.transactionName}</div>
+    <div data-label="Category">{transaction.category}</div>
+    <div
+      className={Number(transaction.amount) >= 0 ? 'amount positive' : 'amount negative'}
+      data-label="Amount"
+    >
+      ${Math.abs(transaction.amount).toFixed(2)}
+    </div>
+    <div data-label="Account">{transaction.account}</div>
+    <div data-label="Note">{transaction.note}</div>
+  </div>
+))}
+
 
           {transactions.length === 0 && (
             <div className="no-transactions">

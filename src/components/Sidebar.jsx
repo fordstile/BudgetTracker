@@ -1,4 +1,3 @@
-// src/components/Sidebar.jsx
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
@@ -12,101 +11,101 @@ import userImage from "../assets/DV.jpg";
 import "./Sidebar.css";
 
 const Sidebar = ({ onCollapse }) => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-    const toggleSidebar = () => {
-        const newState = !isCollapsed;
-        setIsCollapsed(newState);
-        onCollapse(newState);
-    };
+  const toggleSidebar = () => {
+    const newState = !isCollapsed;
+    setIsCollapsed(newState);
+    onCollapse(newState);
+  };
 
-    return (
-        <>
-            <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-                <div className="sidebar-content">
-                    <div className="sidebar-header">
-                        <div className="logo">
-                            <span>FINTRACK</span>
-                        </div>
-                        <button className="collapse-btn" onClick={toggleSidebar}>
-                            {isCollapsed ? (
-                                <BiChevronRight className="collapse-icon" />
-                            ) : (
-                                <BiChevronLeft className="collapse-icon" />
-                            )}
-                        </button>
-                    </div>
+  return (
+    <>
+      <aside className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
+        <div className="sidebar-content">
+          <div className="sidebar-header">
+            <div className="logo">
+              <span>FINTRACK</span>
+            </div>
 
-                    <nav className="sidebar-nav">
-                        <div className="nav-section">
-                            <p className="nav-title">MAIN</p>
-                            <ul>
-                                <li>
-                                    <NavLink to="/dashboard" end data-tooltip="D">
-                                        <RxDashboard className="icon" />
-                                        {!isCollapsed && <span>Dashboard</span>}
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/accounts" data-tooltip="A">
-                                        <BsWallet2 className="icon" />
-                                        {!isCollapsed && <span>Accounts</span>}
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/budgets" data-tooltip="B">
-                                        <BiMoneyWithdraw className="icon" />
-                                        {!isCollapsed && <span>Budgets</span>}
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/transactions" data-tooltip="T">
-                                        <TbReportMoney className="icon" />
-                                        {!isCollapsed && <span>Transactions</span>}
-                                    </NavLink>
-                                </li>
-                            </ul>
-                        </div>
+          </div>
 
-                        <div className="nav-section">
-                            <p className="nav-title">{!isCollapsed && "TOOLS"}</p>
-                            <ul>
-                                <li>
-                                    <NavLink to="/dashboard/calculators" data-tooltip="C">
-                                        <SlCalculator className="icon" />
-                                        {!isCollapsed && <span>Calculators</span>}
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/settings" data-tooltip="S">
-                                        <IoSettingsOutline className="icon" />
-                                        {!isCollapsed && <span>Settings</span>}
-                                    </NavLink>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+          <nav className="sidebar-nav">
+            <div className="nav-section">
+              <p className="nav-title">MAIN</p>
+              <ul>
+                <li>
+                  <NavLink to="/dashboard" end data-tooltip="D">
+                    <RxDashboard className="icon" />
+                    {!isCollapsed && <span>Dashboard</span>}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/accounts" data-tooltip="A">
+                    <BsWallet2 className="icon" />
+                    {!isCollapsed && <span>Accounts</span>}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/budgets" data-tooltip="B">
+                    <BiMoneyWithdraw className="icon" />
+                    {!isCollapsed && <span>Budgets</span>}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/transactions" data-tooltip="T">
+                    <TbReportMoney className="icon" />
+                    {!isCollapsed && <span>Transactions</span>}
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
 
-                <div className="user-footer">
-                    <div className="user-info">
-                        <img src={userImage} alt="User" className="avatar-image" />
-                        {!isCollapsed && (
-                            <div className="user-details">
-                                <span className="user-greeting">Welcome back</span>
-                                <span className="user-name">Ibrahim</span>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </aside>
-            {isCollapsed && (
-                <button className="expand-btn" onClick={toggleSidebar}>
-                    <BiChevronRight className="expand-icon" />
-                </button>
+            <div className="nav-section">
+              <p className="nav-title">{!isCollapsed && "TOOLS"}</p>
+              <ul>
+                <li>
+                  <NavLink to="/dashboard/calculators" data-tooltip="C">
+                    <SlCalculator className="icon" />
+                    {!isCollapsed && <span>Calculators</span>}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/settings" data-tooltip="S">
+                    <IoSettingsOutline className="icon" />
+                    {!isCollapsed && <span>Settings</span>}
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <div className="user-footer">
+          <div className="user-info">
+            <img src={userImage} alt="User avatar" className="avatar-image" />
+            {!isCollapsed && (
+              <div className="user-details">
+                <span className="user-greeting">Welcome back</span>
+                <span className="user-name">Ibrahim</span>
+              </div>
             )}
-        </>
-    );
+          </div>
+        </div>
+      </aside>
+      <button
+        className="expand-btn"
+        onClick={toggleSidebar}
+        aria-label={isCollapsed ? "Open sidebar" : "Close sidebar"}
+      >
+        {isCollapsed ? (
+          <BiChevronRight className="expand-icon" />
+        ) : (
+          <BiChevronLeft className="expand-icon" />
+        )}
+      </button>
+    </>
+  );
 };
 
 export default Sidebar;

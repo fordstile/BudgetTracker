@@ -1,9 +1,11 @@
+/* Transactions Page */
 .transactions-page {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Transactions Header */
 .transactions-header {
   display: flex;
   justify-content: space-between;
@@ -31,6 +33,55 @@
 
 .add-transaction-btn:hover {
   background-color: #4f46e5;
+}
+
+/* Transactions List */
+.transactions-list {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.list-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 2fr;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.transaction-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 2fr;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  align-items: center;
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.amount {
+  font-weight: 600;
+}
+
+.amount.positive {
+  color: #059669;
+}
+
+.amount.negative {
+  color: #dc2626;
+}
+
+.no-transactions {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
 }
 
 /* Modal Styles */
@@ -178,7 +229,6 @@ form {
   padding: 0.5rem 1rem;
   background: #f1f5f9;
   width: 50%;
-  /* height: 3.25rem; */
   border: none;
   border-radius: 6px;
   color: #64748b;
@@ -188,8 +238,8 @@ form {
 }
 
 .cancel-btn:hover {
-  background: #727475;
-  color: lightcoral;
+  background: #e2e8f0;
+  color: #475569;
 }
 
 .submit-btn {
@@ -207,51 +257,146 @@ form {
   background: #1d4ed8;
 }
 
-/* Transactions List */
-.transactions-list {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
+/* Mobile Responsive Layout */
+@media (max-width: 768px) {
+  .transactions-page {
+    padding: 1rem;
+  }
+
+  .transactions-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .add-transaction-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .list-header {
+    display: none;
+  }
+
+  .transaction-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .transaction-item > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+  }
+
+  .transaction-item > div::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #374151;
+  }
+
+  .no-transactions {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .add-transaction-modal {
+    max-width: 90%;
+    height: 500px;
+  }
+
+  .modal-header {
+    padding: 0.5rem 1rem;
+  }
+
+  .modal-header h3 {
+    font-size: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.75rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 0.813rem;
+    height: 2rem;
+  }
+
+  .amount-input {
+    height: 2rem;
+  }
+
+  .amount-input span {
+    padding: 0.25rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cancel-btn,
+  .submit-btn {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
 }
 
-.list-header {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 2fr;
-  padding: 1rem;
-  background-color: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
-  font-weight: 600;
-  color: #4b5563;
-}
+@media (max-width: 480px) {
+  .transactions-page {
+    padding: 0.75rem;
+  }
 
-.transaction-item {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 2fr;
-  padding: 1rem;
-  border-bottom: 1px solid #e5e7eb;
-  align-items: center;
-}
+  .transactions-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 
-.transaction-item:last-child {
-  border-bottom: none;
-}
+  .transactions-header h2 {
+    font-size: 1.1rem;
+  }
 
-.amount {
-  font-weight: 600;
-}
+  .add-transaction-btn {
+    width: 100%;
+    padding: 0.5rem;
+  }
 
-.amount.positive {
-  color: #059669;
-}
+  .transaction-item {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
 
-.amount.negative {
-  color: #dc2626;
-}
+  .transaction-item > div {
+    font-size: 0.813rem;
+  }
 
-.no-transactions {
-  padding: 3rem;
-  text-align: center;
-  color: #6b7280;
-  font-size: 0.95rem;
-} 
+  .no-transactions {
+    padding: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .add-transaction-modal {
+    max-width: 95%;
+    height: 450px;
+  }
+
+  .modal-header h3 {
+    font-size: 0.938rem;
+  }
+
+  .form-group label {
+    font-size: 0.688rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 0.75rem;
+  }
+}

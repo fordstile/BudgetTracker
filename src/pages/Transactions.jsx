@@ -5,7 +5,7 @@ import './Transactions.css';
 
 const Transactions = () => {
   const [showAddForm, setShowAddForm] = useState(false);
-  const { transactions, addTransaction } = useTransactions();
+  const { transactions, addTransaction, deleteTransaction } = useTransactions();
   const [newTransaction, setNewTransaction] = useState({
     account: 'US Bank (#8393)',
     transactionName: '',
@@ -67,6 +67,10 @@ const Transactions = () => {
     });
   };
 
+  const handleDelete = (id) => {
+    deleteTransaction(id);
+  };
+
   return (
     <div className="page-container">
       <div className="page-header">
@@ -87,24 +91,33 @@ const Transactions = () => {
             <div>Amount</div>
             <div>Account</div>
             <div>Note</div>
+            <div>Actions</div>
           </div>
           
           {transactions.map(transaction => (
-  <div key={transaction.id} className="transaction-item">
-    <div data-label="Date">{new Date(transaction.date).toLocaleDateString()}</div>
-    <div data-label="Transaction">{transaction.transactionName}</div>
-    <div data-label="Category">{transaction.category}</div>
-    <div
-      className={Number(transaction.amount) >= 0 ? 'amount positive' : 'amount negative'}
-      data-label="Amount"
-    >
-      ${Math.abs(transaction.amount).toFixed(2)}
-    </div>
-    <div data-label="Account">{transaction.account}</div>
-    <div data-label="Note">{transaction.note}</div>
-  </div>
-))}
-
+            <div key={transaction.id} className="transaction-item">
+              <div data-label="Date">{new Date(transaction.date).toLocaleDateString()}</div>
+              <div data-label="Transaction">{transaction.transactionName}</div>
+              <div data-label="Category">{transaction.category}</div>
+              <div
+                className={Number(transaction.amount) >= 0 ? 'amount positive' : 'amount negative'}
+                data-label="Amount"
+              >
+                ${Math.abs(transaction.amount).toFixed(2)}
+              </div>
+              <div data-label="Account">{transaction.account}</div>
+              <div data-label="Note">{transaction.note}</div>
+              <div data-label="Actions">
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(transaction.id)}
+                  aria-label={`Delete transaction ${transaction.transactionName}`}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
 
           {transactions.length === 0 && (
             <div className="no-transactions">
@@ -125,8 +138,9 @@ const Transactions = () => {
             <form onSubmit={handleSubmit}>
               <div className="form-fields">
                 <div className="form-group">
-                  <label>Account</label>
+                  <label htmlFor="account">Account</label>
                   <select
+                    id="account"
                     name="account"
                     value={newTransaction.account}
                     onChange={handleInputChange}
@@ -136,8 +150,9 @@ const Transactions = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Transaction name</label>
+                  <label htmlFor="transactionName">Transaction name</label>
                   <input
+                    id="transactionName"
                     type="text"
                     name="transactionName"
                     value={newTransaction.transactionName}
@@ -148,8 +163,9 @@ const Transactions = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Category</label>
+                  <label htmlFor="category">Category</label>
                   <select
+                    id="category"
                     name="category"
                     value={newTransaction.category}
                     onChange={handleInputChange}
@@ -163,8 +179,9 @@ const Transactions = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Date</label>
+                  <label htmlFor="date">Date</label>
                   <input
+                    id="date"
                     type="date"
                     name="date"
                     value={newTransaction.date}
@@ -174,10 +191,11 @@ const Transactions = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Amount</label>
+                  <label htmlFor="amount">Amount</label>
                   <div className="amount-input">
                     <span>$</span>
                     <input
+                      id="amount"
                       type="number"
                       name="amount"
                       value={newTransaction.amount}
@@ -190,8 +208,9 @@ const Transactions = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Note</label>
+                  <label htmlFor="note">Note</label>
                   <input
+                    id="note"
                     type="text"
                     name="note"
                     value={newTransaction.note}
@@ -217,4 +236,4 @@ const Transactions = () => {
   );
 };
 
-export default Transactions; 
+export default Transactions;

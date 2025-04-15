@@ -1,4 +1,3 @@
-// src/pages/Dashboard.jsx
 import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
@@ -22,12 +21,16 @@ const DashboardHome = () => {
       <div className="dashboard-header">
         <h1>Dashboard Overview</h1>
         <div className="dashboard-actions">
-          <button className="action-btn">
+          <button
+            className="action-btn"
+            aria-label="Export report"
+          >
             <FaFileExport /> Export Report
           </button>
-          <button 
+          <button
             className="action-btn primary"
-            onClick={() => navigate('/dashboard/transactions')}
+            onClick={() => navigate("/dashboard/transactions")}
+            aria-label="Add new transaction"
           >
             <FaPlus /> Add Transaction
           </button>
@@ -82,7 +85,11 @@ const DashboardHome = () => {
         <div className="recent-transactions">
           <div className="transactions-header">
             <h2>Recent Transactions</h2>
-            <a href="/dashboard/transactions" className="view-all">
+            <a
+              href="/dashboard/transactions"
+              className="view-all"
+              aria-label="View all transactions"
+            >
               See all transactions <FaArrowUp />
             </a>
           </div>
@@ -111,16 +118,16 @@ const Dashboard = () => {
           <Route path="settings" element={<Settings />} />
         </Routes>
         {!isChatbotFullscreen && (
-          <div 
-            className="chatbot-toggle" 
+          <div
+            className="chatbot-toggle"
             onClick={() => setIsChatbotOpen(true)}
-            title="Talk to AI"
+            aria-label="Open chatbot"
           >
             <FaRobot />
           </div>
         )}
-        <Chatbot 
-          isOpen={isChatbotOpen} 
+        <Chatbot
+          isOpen={isChatbotOpen}
           onClose={() => {
             setIsChatbotOpen(false);
             setIsChatbotFullscreen(false);

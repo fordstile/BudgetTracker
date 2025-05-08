@@ -86,54 +86,48 @@ const Transactions = () => {
       </div>
 
       <div className="page-content">
-        <div className="transactions-list">
-          <div className="list-header">
-            <div>Date</div>
-            <div>Transaction</div>
-            <div>Category</div>
-            <div>Amount</div>
-            <div>Account</div>
-            <div>Note</div>
-            <div>Actions</div>
-          </div>
-
-          {transactions.map((transaction) => (
-            <div key={transaction.id} className="transaction-item">
-              <div data-label="Date">
-                {new Date(transaction.date).toLocaleDateString()}
-              </div>
-              <div data-label="Transaction">{transaction.transactionName}</div>
-              <div data-label="Category">{transaction.category}</div>
-              <div
-                className={
-                  Number(transaction.amount) >= 0
-                    ? "amount positive"
-                    : "amount negative"
-                }
-                data-label="Amount"
-              >
-                ${Math.abs(transaction.amount).toFixed(2)}
-              </div>
-              <div data-label="Account">{transaction.account}</div>
-              <div data-label="Note">{transaction.note}</div>
-              <div data-label="Actions">
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDelete(transaction._id)}
-                  aria-label={`Delete transaction ${transaction.transactionName}`}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
-
-          {transactions.length === 0 && (
-            <div className="no-transactions">
-              No transactions yet. Click "Add Transaction" to get started.
-            </div>
-          )}
+      <div className="transactions-list">
+  <div className="transactions-list-inner">
+    <div className="list-header">
+      <div>Date</div>
+      <div>Transaction</div>
+      <div>Category</div>
+      <div>Amount</div>
+      <div>Account</div>
+      <div>Note</div>
+      <div>Actions</div>
+    </div>
+    {transactions.map((transaction) => (
+      <div key={transaction.id} className="transaction-item">
+        <div data-label="Date">{new Date(transaction.date).toLocaleDateString()}</div>
+        <div data-label="Transaction">{transaction.transactionName}</div>
+        <div data-label="Category">{transaction.category}</div>
+        <div
+          className={Number(transaction.amount) >= 0 ? "amount positive" : "amount negative"}
+          data-label="Amount"
+        >
+          ${Math.abs(transaction.amount).toFixed(2)}
         </div>
+        <div data-label="Account">{transaction.account}</div>
+        <div data-label="Note">{transaction.note}</div>
+        <div data-label="Actions">
+          <button
+            className="delete-btn"
+            onClick={() => handleDelete(transaction._id)}
+            aria-label={`Delete transaction ${transaction.transactionName}`}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    ))}
+    {transactions.length === 0 && (
+      <div className="no-transactions">
+        No transactions yet. Click "Add Transaction" to get started.
+      </div>
+    )}
+  </div>
+</div>
       </div>
 
       {showAddForm && (

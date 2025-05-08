@@ -9,12 +9,10 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import userImage from "../assets/DV.jpg";
 import "./Sidebar.css";
-// import { useContext } from "react";
 import { AppContext } from "../components/context/AppContext";
-//import axiosInstance from "../api/axiosInstance";
 
 const Sidebar = ({ onCollapse }) => {
-  const { userData, logoutUser } = useContext(AppContext); // ✅ FIXED
+  const { userData, logoutUser } = useContext(AppContext);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const navigate = useNavigate();
 
@@ -22,6 +20,13 @@ const Sidebar = ({ onCollapse }) => {
     const newState = !isCollapsed;
     setIsCollapsed(newState);
     onCollapse(newState);
+  };
+
+  const handleNavClick = () => {
+    if (!isCollapsed) {
+      setIsCollapsed(true);
+      onCollapse(true);
+    }
   };
 
   const handleLogout = async () => {
@@ -44,25 +49,25 @@ const Sidebar = ({ onCollapse }) => {
               <p className="nav-title">MAIN</p>
               <ul>
                 <li>
-                  <NavLink to="/dashboard" end data-tooltip="D">
+                  <NavLink to="/dashboard" end data-tooltip="D" onClick={handleNavClick}>
                     <RxDashboard className="icon" />
                     {!isCollapsed && <span>Dashboard</span>}
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/accounts" data-tooltip="A">
+                  <NavLink to="/dashboard/accounts" data-tooltip="A" onClick={handleNavClick}>
                     <BsWallet2 className="icon" />
                     {!isCollapsed && <span>Accounts</span>}
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/budgets" data-tooltip="B">
+                  <NavLink to="/dashboard/budgets" data-tooltip="B" onClick={handleNavClick}>
                     <BiMoneyWithdraw className="icon" />
                     {!isCollapsed && <span>Budgets</span>}
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/transactions" data-tooltip="T">
+                  <NavLink to="/dashboard/transactions" data-tooltip="T" onClick={handleNavClick}>
                     <TbReportMoney className="icon" />
                     {!isCollapsed && <span>Transactions</span>}
                   </NavLink>
@@ -74,13 +79,13 @@ const Sidebar = ({ onCollapse }) => {
               <p className="nav-title">{!isCollapsed && "TOOLS"}</p>
               <ul>
                 <li>
-                  <NavLink to="/dashboard/calculators" data-tooltip="C">
+                  <NavLink to="/dashboard/calculators" data-tooltip="C" onClick={handleNavClick}>
                     <SlCalculator className="icon" />
                     {!isCollapsed && <span>Calculators</span>}
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/settings" data-tooltip="S">
+                  <NavLink to="/dashboard/settings" data-tooltip="S" onClick={handleNavClick}>
                     <IoSettingsOutline className="icon" />
                     {!isCollapsed && <span>Settings</span>}
                   </NavLink>

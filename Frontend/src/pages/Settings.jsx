@@ -1,214 +1,3 @@
-// import React, { useState, useRef, useContext, useEffect } from "react";
-// import {
-//   FaUser,
-//   FaGlobe,
-//   FaClock,
-//   FaCalendar,
-//   FaCreditCard,
-//   FaPaypal,
-//   FaGoogle,
-//   FaDownload,
-//   FaTrash,
-//   FaSearch,
-//   FaUserPlus,
-// } from "react-icons/fa";
-// import { IoMdLock } from "react-icons/io";
-// import {
-//   MdNotifications,
-//   MdApps,
-//   MdSecurity,
-//   MdCategory,
-//   MdHelp,
-//   MdContentCopy,
-// } from "react-icons/md";
-// import { RiBillLine, RiTeamLine, RiShieldUserLine } from "react-icons/ri";
-// import { BiCategoryAlt } from "react-icons/bi";
-// import userImage from "../assets/DV.jpg";
-// import "./Settings.css";
-// import { AppContext } from "../components/context/AppContext";
-// import axiosInstance from "../api/axiosInstance";
-// import { toast } from "react-toastify";
-
-// const Settings = () => {
-//   const [activeTab, setActiveTab] = useState("General");
-
-//   const [userSettings, setUserSettings] = useState({
-//     name: "",
-//     email: "",
-//     timezone: "GMT +07:00",
-//     language: "English UK",
-//     dateFormat: "DD/MM/YYYY",
-//   });
-
-//   const [isEditing, setIsEditing] = useState({
-//     name: false,
-//     email: false,
-//   });
-
-//   const fileInputRef = useRef(null);
-//   const [selectedImage, setSelectedImage] = useState(null);
-//   const [searchQuery, setSearchQuery] = useState("");
-//   const [inviteEmail, setInviteEmail] = useState("");
-//   const [showInviteModal, setShowInviteModal] = useState(false);
-//   const [searchResults, setSearchResults] = useState([]);
-//   const [inviteSuccess, setInviteSuccess] = useState(false);
-//   const [referralCode] = useState("FINTRACK2024");
-
-// const tabs = [
-//   { id: "General", icon: <FaUser /> },
-//   { id: "Security", icon: <IoMdLock /> },
-//   { id: "Billing", icon: <RiBillLine /> },
-//   { id: "Categories", icon: <BiCategoryAlt /> },
-//   { id: "Data & Privacy", icon: <RiShieldUserLine /> },
-//   { id: "Notifications", icon: <MdNotifications /> },
-//   { id: "Help & Support", icon: <MdHelp /> },
-// ];
-
-//   const { userData, getUserData } = useContext(AppContext);
-
-//   useEffect(() => {
-//     if (userData) {
-//       setUserSettings((prev) => ({
-//         ...prev,
-//         name: userData.name || "",
-//         email: userData.email || "",
-//       }));
-//     }
-//   }, [userData]);
-
-//   const handleEdit = (field) => {
-//     setIsEditing((prev) => ({ ...prev, [field]: true }));
-//   };
-
-//   const handleSave = async (field) => {
-//     try {
-//       const updatedData = {
-//         name: field === "name" ? userSettings.name : undefined,
-//         email: field === "email" ? userSettings.email : undefined,
-//         profilePic: selectedImage || undefined,
-//       };
-
-//       Object.keys(updatedData).forEach(
-//         (key) => updatedData[key] === undefined && delete updatedData[key]
-//       );
-
-//       await axiosInstance.put("/user/update", updatedData); // cleaned!
-
-//       getUserData();
-//       setIsEditing((prev) => ({ ...prev, [field]: false }));
-//       toast.success("Updated successfully!");
-//     } catch (error) {
-//       toast.error("Update failed!");
-//       console.error(
-//         "❌ Error updating:",
-//         error.response?.data || error.message
-//       );
-//     }
-//   };
-
-//   const handleImageChange = (event) => {
-//     const file = event.target.files[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onloadend = () => {
-//         setSelectedImage(reader.result);
-//       };
-//       reader.readAsDataURL(file);
-//     }
-//   };
-
-//   const triggerFileInput = () => {
-//     fileInputRef.current.click();
-//   };
-
-//   const handleSearch = (query) => {
-//     setSearchQuery(query);
-//     const allSettings = [
-//       {
-//         title: "Profile Settings",
-//         tab: "General",
-//         keywords: ["profile", "photo", "name", "email"],
-//       },
-//       {
-//         title: "Password & Security",
-//         tab: "Security",
-//         keywords: ["password", "security", "2fa", "login"],
-//       },
-//       {
-//         title: "Payment Methods",
-//         tab: "Billing",
-//         keywords: ["payment", "card", "billing", "subscription"],
-//       },
-//       {
-//         title: "Expense Categories",
-//         tab: "Categories",
-//         keywords: ["category", "expense", "income", "budget"],
-//       },
-//       {
-//         title: "Privacy Settings",
-//         tab: "Data & Privacy",
-//         keywords: ["privacy", "data", "export", "delete"],
-//       },
-//       {
-//         title: "Notification Settings",
-//         tab: "Notifications",
-//         keywords: ["notifications", "alerts", "email"],
-//       },
-//       {
-//         title: "Help Center",
-//         tab: "Help & Support",
-//         keywords: ["help", "support", "faq", "contact"],
-//       },
-//     ];
-
-//     const results = allSettings.filter(
-//       (setting) =>
-//         setting.title.toLowerCase().includes(query.toLowerCase()) ||
-//         setting.keywords.some((keyword) =>
-//           keyword.includes(query.toLowerCase())
-//         )
-//     );
-
-//     setSearchResults(results);
-//   };
-
-//   const handleInvite = (e) => {
-//     e.preventDefault();
-//     setTimeout(() => {
-//       setInviteSuccess(true);
-//       setTimeout(() => {
-//         setInviteSuccess(false);
-//         setShowInviteModal(false);
-//         setInviteEmail("");
-//       }, 2000);
-//     }, 1000);
-//   };
-
-//   const copyReferralCode = () => {
-//     navigator.clipboard.writeText(referralCode);
-//     alert("Referral code copied!");
-//   };
-// const [hasChanges, setHasChanges] = useState(false);
-
-// useEffect(() => {
-//   // Set hasChanges true when selectedImage changes
-//   if (selectedImage !== null) setHasChanges(true);
-// }, [selectedImage]);
-
-// // Generic handler to mark changes
-// const markAsChanged = () => {
-//   if (!hasChanges) setHasChanges(true);
-// };
-
-// // Simulate Save Changes
-// const handleSaveChanges = () => {
-//   // Later: send userSettings and selectedImage to backend
-//   console.log("Saving changes:", userSettings, selectedImage);
-
-//   setHasChanges(false);
-//   setIsEditing({ name: false, email: false }); // Exit edit modes
-// };
-
 import React, { useState, useRef, useContext, useEffect } from "react";
 import {
   FaUser,
@@ -275,7 +64,7 @@ const Settings = () => {
   const [inviteSuccess, setInviteSuccess] = useState(false);
   const [referralCode] = useState("FINTRACK2024");
 
-  const { userData, getUserData } = useContext(AppContext);
+  const { userData, getUserData, logoutUser } = useContext(AppContext);
 
   const [hasChanges, setHasChanges] = useState(false);
 
@@ -286,7 +75,7 @@ const Settings = () => {
     confirmNewPassword: "",
   });
 
-  const navigate = useNavigate(); // Declare this near other hooks like useState, useEffect
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userData) {
@@ -324,8 +113,8 @@ const Settings = () => {
       toast.success("Changes saved!");
       getUserData();
 
-      setSelectedImage(null); // hides remove button again
-      setHasChanges(false); // hides Save Changes button
+      setSelectedImage(null);
+      setHasChanges(false);
       setIsEditing({ name: false, email: false });
     } catch (err) {
       toast.error("Failed to save changes");
@@ -414,10 +203,8 @@ const Settings = () => {
 
   const copyReferralCode = () => {
     navigator.clipboard.writeText(referralCode);
-    alert("Referral code copied!");
+    toast.info("Referral code copied!");
   };
-
-  const { logoutUser } = useContext(AppContext); // add to existing context destructuring
 
   const handleChangePassword = async () => {
     const { currentPassword, newPassword, confirmNewPassword } = passwordInputs;
@@ -486,14 +273,14 @@ const Settings = () => {
               </div>
             )}
           </div>
-          <button
-            className="invite-btn"
-            onClick={() => setShowInviteModal(true)}
-          >
-            <FaUserPlus /> Invite Friend
-          </button>
-          <button className="upgrade-btn">Upgrade</button>
-          <div className="settings-actions">
+          <div className="right-actions">
+            <button
+              className="invite-btn"
+              onClick={() => setShowInviteModal(true)}
+            >
+              <FaUserPlus /> Invite Friend
+            </button>
+            <button className="upgrade-btn">Upgrade</button>
             <button
               className="logout-btn"
               onClick={async () => {
@@ -503,23 +290,12 @@ const Settings = () => {
             >
               Logout
             </button>
-
-            <button
-              className="delete-account-btn"
-              onClick={() => {
-                // You can hook this up to a modal later
-                toast.warn("Delete Account functionality coming soon.");
-              }}
-            >
-              Delete Account
-            </button>
+            <img
+              src={userData?.profilePic || userImage}
+              alt="Profile"
+              className="profile-image"
+            />
           </div>
-
-          <img
-            src={userData?.profilePic || userImage}
-            alt="Profile"
-            className="profile-image"
-          />
         </div>
       </div>
 
@@ -605,7 +381,7 @@ const Settings = () => {
                     ref={fileInputRef}
                     onChange={(e) => {
                       handleImageChange(e);
-                      setHasChanges(true); // mark changes
+                      setHasChanges(true);
                     }}
                     accept="image/*"
                     style={{ display: "none" }}
@@ -620,7 +396,7 @@ const Settings = () => {
                       className="edit-btn remove-btn"
                       onClick={() => {
                         setSelectedImage(null);
-                        setHasChanges(false); // reset change tracker
+                        setHasChanges(false);
                       }}
                     >
                       Remove

@@ -21,10 +21,8 @@ body {
 /* Header */
 .settings-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 2rem;
-  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -39,12 +37,13 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .search-container {
   position: relative;
-  width: clamp(150px, 40%, 300px);
+  flex: 1;
+  min-width: 150px;
 }
 
 .search-icon {
@@ -119,8 +118,15 @@ body {
   font-size: 0.9rem;
 }
 
+.right-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .invite-btn,
-.upgrade-btn {
+.upgrade-btn,
+.logout-btn {
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
@@ -129,6 +135,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   min-height: 44px;
+  white-space: nowrap;
 }
 
 .invite-btn {
@@ -141,6 +148,16 @@ body {
   background-color: #3b82f6;
   color: #fff;
   border: none;
+}
+
+.logout-btn {
+  background-color: #e53935;
+  color: white;
+  border: none;
+}
+
+.logout-btn:hover {
+  background-color: #c62828;
 }
 
 .profile-image {
@@ -565,40 +582,6 @@ select {
   color: #6b7280;
   font-size: 0.9rem;
 }
-.settings-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.logout-btn {
-  background-color: #e53935;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-weight: 500;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.logout-btn:hover {
-  background-color: #c62828;
-}
-
-.delete-account-btn {
-  background-color: transparent;
-  color: #e53935;
-  border: 1px solid #e53935;
-  padding: 8px 16px;
-  font-weight: 500;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.delete-account-btn:hover {
-  background-color: #ffeaea;
-}
 
 .form-group {
   margin-bottom: 1.5rem;
@@ -668,6 +651,7 @@ select {
   font-size: 0.9rem;
   animation: fadeIn 0.3s ease-in-out;
 }
+
 .password-change-form {
   display: flex;
   flex-direction: column;
@@ -1019,13 +1003,33 @@ select {
   }
 
   .header-actions {
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    justify-content: space-between;
+    gap: 0.5rem;
   }
 
   .search-container {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .right-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .invite-btn,
+  .upgrade-btn,
+  .logout-btn {
+    width: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .profile-image {
+    margin-left: 0;
   }
 
   .mobile-menu-toggle {

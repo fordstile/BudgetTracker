@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-//import User from "../models/userModel.js"; // Adjust the path if needed
+
 import User from "../models/User.js";
 
 export const getUserProfile = (req, res) => {
@@ -10,29 +10,7 @@ export const getUserProfile = (req, res) => {
   res.status(200).json(req.user);
 };
 
-//   const { name, email, profilePic } = req.body;
 
-//   try {
-//     const user = await User.findById(req.user._id);
-//     if (!user) return res.status(404).json({ message: "User not found" });
-
-//     if (name) user.name = name;
-//     if (email) user.email = email;
-//     if (profilePic) user.profilePic = profilePic;
-
-//     const updatedUser = await user.save();
-//     res.status(200).json({
-//       _id: updatedUser._id,
-//       name: updatedUser.name,
-//       email: updatedUser.email,
-//       profilePic: updatedUser.profilePic,
-//     });
-//   } catch (err) {
-//     res
-//       .status(500)
-//       .json({ message: "Failed to update profile", error: err.message });
-//   }
-// };
 
 export const updateUserProfile = async (req, res) => {
   const user = await User.findById(req.user._id);

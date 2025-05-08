@@ -9,14 +9,11 @@ const generateToken = (id) => {
   });
 };
 
-// @desc    Register new user
-// @route   POST /api/auth/register
+//     Register new user
+//   POST /api/auth/register
 
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
-
-  console.log("📥 Incoming registration data:", req.body); // <-- Add this line
-
   try {
     // Check if user exists
     let user = await User.findOne({ email });
@@ -76,8 +73,8 @@ export const login = async (req, res) => {
     res
       .cookie("token", token, {
         httpOnly: true,
-        secure: false, // true in production (with HTTPS)
-        sameSite: "Lax", // or "None" if using different domains
+        secure: false, 
+        sameSite: "Lax", 
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       })
       .status(200)

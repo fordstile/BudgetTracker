@@ -233,12 +233,12 @@ const LandingPage = () => {
         <div className="hero-text">
           <h1>Manage Your Money In the Best Possible Way</h1>
           <p>Take control of your finances, track expenses, and maximize savings effortlessly.</p>
-          <div className="hero-buttons">
+          {/* <div className="hero-buttons">
             <Link to="/signup">
               <button className="btn-primary">Get started</button>
             </Link>
             <button className="btn-secondary">Talk to AI</button>
-          </div>
+          </div> */}
         </div>
         <div className="animated-phone">
           <img src={phone} alt="Animated Phone" className="phone" />

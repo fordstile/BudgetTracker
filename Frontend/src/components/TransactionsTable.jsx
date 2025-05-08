@@ -28,26 +28,7 @@ const TransactionsTable = () => {
             <th>Amount</th>
           </tr>
         </thead>
-        {/* <tbody>
-          {recentTransactions.map(tx => (
-            <tr key={tx.id}>
-              <td>{tx.account}</td>
-              <td>{tx.transactionName}</td>
-              <td>{tx.category}</td>
-              <td>{new Date(tx.date).toLocaleDateString()}</td>
-              <td className={Number(tx.amount) >= 0 ? "positive" : "negative"}>
-                ${Math.abs(tx.amount).toFixed(2)}
-              </td>
-            </tr>
-          ))}
-          {recentTransactions.length === 0 && (
-            <tr>
-              <td colSpan="5" className="no-transactions">
-                No recent transactions. Add a transaction to see it here.
-              </td>
-            </tr>
-          )}
-        </tbody> */}
+
 
         <tbody>
           {recentTransactions.map((tx, index) => (

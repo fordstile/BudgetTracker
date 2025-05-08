@@ -1,14 +1,7 @@
 import Transaction from "../models/Transaction.js";
 
 // @desc Get all transactions
-// export const getTransactions = async (req, res) => {
-//   try {
-//     const transactions = await Transaction.find().sort({ createdAt: -1 });
-//     res.status(200).json(transactions);
-//   } catch (error) {
-//     res.status(500).json({ error: "Failed to fetch transactions" });
-//   }
-// };
+
 export const getTransactions = async (req, res) => {
   try {
     const transactions = await Transaction.find({ user: req.user.id }).sort({
@@ -34,25 +27,6 @@ export const deleteTransaction = async (req, res) => {
   }
 };
 
-// @desc Add a new transaction
-// export const addTransaction = async (req, res) => {
-//   try {
-//     const { account, transactionName, category, amount, date } = req.body;
-
-//     const newTransaction = new Transaction({
-//       account,
-//       transactionName,
-//       category,
-//       amount,
-//       date: date || Date.now(),
-//     });
-
-//     const savedTransaction = await newTransaction.save();
-//     res.status(201).json(savedTransaction);
-//   } catch (error) {
-//     res.status(500).json({ error: "Failed to add transaction" });
-//   }
-// };
 
 export const addTransaction = async (req, res) => {
   try {

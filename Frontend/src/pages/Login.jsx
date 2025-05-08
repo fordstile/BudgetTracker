@@ -40,12 +40,12 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <img
+      {/* <img
         onClick={() => navigate("/")}
         src={assets.logo} // Update this to your actual logo path
         alt="Logo"
         className="logo"
-      />
+      /> */}
 
       <div className="login-box">
         <h2 className="title">Login</h2>

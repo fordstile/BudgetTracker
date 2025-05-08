@@ -1,61 +1,66 @@
 /* 🌐 Global Layout */
 .page-container,
 .budget-container {
-  padding: 2rem;
+  padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 /* 🔠 Headers */
-.page-header,
-.budget-header {
+.page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .page-title {
   font-size: 2rem;
-}
-
-.budget-header h2 {
-  font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
 }
 
 /* 🧭 Action Buttons */
-.page-actions,
-.cancel-btn,
-.next-btn {
+.page-actions {
   margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.action-btn,
-.cancel-btn,
-.next-btn {
+.action-btn {
   padding: 0.6rem 1.2rem;
-  margin-left: 0.5rem;
   font-size: 0.9rem;
   cursor: pointer;
   border: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  min-height: 44px;
+  flex: 1;
+  min-width: 100px;
 }
 
-.cancel-btn {
+.action-btn.primary {
+  background-color: #6366f1;
+  color: white;
+  font-weight: 500;
+}
+
+.action-btn.primary:hover {
+  background-color: #5455d5;
+}
+
+.action-btn:not(.primary) {
   background: none;
   color: #666;
 }
 
-.next-btn,
-.action-btn.primary {
-  background-color: #6366f1;
-  color: white;
-  border-radius: 6px;
-  font-weight: 500;
+.action-btn:not(.primary):hover {
+  background-color: #f3f4f6;
 }
 
 /* ⏩ Progress Steps */
@@ -63,29 +68,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2rem 0 3rem;
+  margin: 1.5rem 0 2rem;
   flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  margin-right: 1rem;
+  gap: 0.25rem;
 }
 
 .step-indicator {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
   background-color: #e5e7eb;
   color: #666;
+  transition: all 0.3s ease;
 }
 
 .step.completed .step-indicator,
@@ -99,15 +105,15 @@
 }
 
 .step span {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #666;
 }
 
 .step-line {
-  width: 100px;
+  width: 60px;
   height: 2px;
   background-color: #e5e7eb;
-  margin: 0 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .step-line.completed {
@@ -115,35 +121,137 @@
 }
 
 /* 🧾 Content Layout */
-.page-content,
+.page-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .budget-content {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 2rem;
-  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  align-items: center;
 }
 
-.budget-form {
-  flex: 2;
-  min-width: 300px;
+/* Centering Content */
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.budget-form h3 {
-  font-size: 1.1rem;
-  color: #1a1a1a;
-  margin-bottom: 1.5rem;
+/* 📝 Income and Savings Steps */
+.income-step,
+.savings-step {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.budget-summary {
-  padding: 1.5rem;
+.step-card {
   background-color: white;
   border-radius: 12px;
+  padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.step-icon {
+  font-size: 2rem;
+  color: #6366f1;
+  margin-bottom: 0.75rem;
+}
+
+.step-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.step-description {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 250px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.input-prefix {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.styled-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: right;
+  transition: all 0.2s ease;
+  min-height: 40px;
+}
+
+.styled-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
 }
 
 /* 💰 Expenses */
+.budget-form {
+  width: 100%;
+  max-width: 600px;
+  
+}
+
+.budget-form h3 {
+  font-size: 1rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.budget-summary {
+  width: 100%;
+  max-width: 300px;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 1rem;
+}
+
 .expenses-section {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -152,7 +260,7 @@
 .expense-total {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.75rem;
   border-bottom: 1px solid #e5e7eb;
   font-weight: 600;
   color: #1a1a1a;
@@ -165,22 +273,27 @@
 
 .category-header {
   background: #f7f7f7;
-  padding: 1rem;
+  padding: 0.75rem;
   display: flex;
   align-items: center;
   cursor: pointer;
   user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.category-header:hover {
+  background: #f0f0f0;
 }
 
 .toggle-icon {
-  margin-right: 0.75rem;
+  margin-right: 0.5rem;
   color: #666;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .category-header h4 {
   flex: 1;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #666;
   letter-spacing: 0.05em;
@@ -189,32 +302,31 @@
 .category-amount {
   font-weight: 500;
   color: #1a1a1a;
+  font-size: 0.75rem;
 }
 
 .category-items {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
 }
 
 .expense-item {
   display: flex;
   align-items: center;
-  padding: 0.75rem;
-  gap: 1rem;
+  padding: 0.5rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
 .expense-item svg {
-  margin-right: 0.5rem;
-}
-
-.item-icon {
+  margin-right: 0.25rem;
   color: #6366f1;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .expense-item span {
   flex: 1;
   color: #1a1a1a;
+  font-size: 0.75rem;
 }
 
 /* 💵 Input */
@@ -227,16 +339,17 @@
 
 .amount-input span {
   color: #666;
-  flex: none;
+  font-size: 0.75rem;
 }
 
 .amount-input input {
-  width: 80px;
-  padding: 0.5rem;
+  width: 70px;
+  padding: 0.25rem;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
   text-align: right;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
+  min-height: 36px;
 }
 
 .amount-input input:focus {
@@ -248,9 +361,9 @@
 /* 🍩 Donut Chart */
 .donut-chart {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto 2rem;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1rem;
   border-radius: 50%;
   background: conic-gradient(
     #6366f1 0deg 60deg,
@@ -264,8 +377,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   background: white;
   border-radius: 50%;
   display: flex;
@@ -274,7 +387,7 @@
 }
 
 .income-amount {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #1a1a1a;
 }
@@ -283,17 +396,17 @@
 .summary-items {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .summary-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem;
+  padding: 0.5rem;
   background-color: #f9fafb;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
 }
 
 .summary-item span:last-child {
@@ -314,24 +427,134 @@
 }
 
 /* 📱 Responsive Design */
-@media (max-width: 768px) {
-  .page-content,
-  .budget-content {
-    display: flex;
-    flex-direction: column;
+@media (min-width: 1024px) {
+  .page-container,
+  .budget-container {
+    padding: 2rem;
   }
 
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  .step-indicator {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+
+  .step-line {
+    width: 100px;
+  }
+
+  .step span {
+    font-size: 0.85rem;
+  }
+
+  .step-card {
+    padding: 2rem;
+    max-width: 500px;
+  }
+
+  .step-icon {
+    font-size: 2.5rem;
+  }
+
+  .step-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .step-description {
+    font-size: 0.9rem;
+  }
+
+  .input-wrapper {
+    max-width: 300px;
+  }
+
+  .styled-input {
+    font-size: 1rem;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    min-height: 44px;
+  }
+
+  .input-prefix {
+    font-size: 1rem;
+    left: 1rem;
+  }
+
+  .budget-form {
+    max-width: 600px;
+  }
+
+  .budget-summary {
+    max-width: 300px;
+    padding: 1.5rem;
+  }
+
+  .donut-chart {
+    width: 200px;
+    height: 200px;
+  }
+
+  .chart-center {
+    width: 150px;
+    height: 150px;
+  }
+
+  .income-amount {
+    font-size: 1.5rem;
+  }
+
+  .amount-input input {
+    width: 80px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+
+  .category-header h4 {
+    font-size: 0.8rem;
+  }
+
+  .category-amount {
+    font-size: 0.8rem;
+  }
+
+  .expense-item span {
+    font-size: 0.8rem;
+  }
+
+  .summary-item {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
   .page-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .page-actions {
-    margin-left: 0;
+    justify-content: center;
   }
 
-  .summary-item span {
-    font-size: 0.9rem;
+  .budget-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .budget-form {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .budget-summary {
+    width: 100%;
+    max-width: 300px;
   }
 
   .expense-item {
@@ -342,6 +565,7 @@
   .amount-input {
     margin-top: 0.5rem;
     margin-left: 0;
+    width: 100%;
   }
 
   .amount-input input {
@@ -349,17 +573,180 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .page-title {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 
-  .step-indicator {
-    width: 1.5rem;
-    height: 1.5rem;
+  .step-card {
+    padding: 1rem;
+    max-width: 350px;
+  }
+
+  .step-icon {
+    font-size: 1.75rem;
+  }
+
+  .step-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .step-description {
+    font-size: 0.8rem;
+  }
+
+  .input-wrapper {
+    max-width: 200px;
+  }
+
+  .styled-input {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem 0.4rem 1.75rem;
+    min-height: 36px;
+  }
+
+  .input-prefix {
+    font-size: 0.8rem;
+    left: 0.6rem;
+  }
+
+  .budget-form h3 {
+    font-size: 0.9rem;
+  }
+
+  .donut-chart {
+    width: 150px;
+    height: 150px;
+  }
+
+  .chart-center {
+    width: 110px;
+    height: 110px;
+  }
+
+  .income-amount {
+    font-size: 1.1rem;
   }
 
   .amount-input input {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    padding: 0.25rem;
+    min-height: 32px;
+  }
+
+  .category-header h4 {
+    font-size: 0.7rem;
+  }
+
+  .category-amount {
+    font-size: 0.7rem;
+  }
+
+  .expense-item span {
+    font-size: 0.7rem;
+  }
+
+  .summary-item {
+    font-size: 0.7rem;
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container,
+  .budget-container {
+    padding: 0.5rem;
+  }
+
+  .progress-steps {
+    margin: 1rem 0 1.5rem;
+    gap: 0.25rem;
+  }
+
+  .step-indicator {
+    width: 20px;
+    height: 20px;
+    font-size: 0.6rem;
+  }
+
+  .step-line {
+    width: 40px;
+  }
+
+  .step span {
+    font-size: 0.65rem;
+  }
+
+  .step-card {
+    padding: 0.75rem;
+    max-width: 300px;
+  }
+
+  .step-icon {
+    font-size: 1.5rem;
+  }
+
+  .step-card h3 {
+    font-size: 1rem;
+  }
+
+  .step-description {
+    font-size: 0.75rem;
+  }
+
+  .input-wrapper {
+    max-width: 180px;
+  }
+
+  .styled-input {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem 0.3rem 1.5rem;
+    min-height: 32px;
+  }
+
+  .input-prefix {
+    font-size: 0.75rem;
+    left: 0.5rem;
+  }
+
+  .budget-form h3 {
+    font-size: 0.85rem;
+  }
+
+  .donut-chart {
+    width: 120px;
+    height: 120px;
+  }
+
+  .chart-center {
+    width: 90px;
+    height: 90px;
+  }
+
+  .income-amount {
+    font-size: 1rem;
+  }
+
+  .amount-input input {
+    font-size: 0.65rem;
+    padding: 0.2rem;
+    min-height: 30px;
+  }
+
+  .category-header h4 {
+    font-size: 0.65rem;
+  }
+
+  .category-amount {
+    font-size: 0.65rem;
+  }
+
+  .expense-item span {
+    font-size: 0.65rem;
+  }
+
+  .summary-item {
+    font-size: 0.65rem;
+    padding: 0.3rem;
   }
 }
